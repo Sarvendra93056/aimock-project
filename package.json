@@ -4,11 +4,23 @@
   "private": true,
   "description": "InterviewAI — AI-Powered Mock Interview Platform Workspace",
   "scripts": {
-    "install:all": "npm install --prefix server && npm install --prefix client",
+    "build": "cd client && npm install && npm run build",
+    "install:all": "npm install && npm install --prefix server && npm install --prefix client",
     "seed": "npm run seed --prefix server",
-    "server": "npm run dev --prefix server",
+    "server": "node server/server.js",
     "client": "npm run dev --prefix client",
     "dev": "concurrently -n \"SERVER,CLIENT\" -c \"cyan,magenta\" \"npm run server\" \"npm run client\""
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "pdf-parse": "^1.1.1"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"

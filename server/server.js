@@ -47,13 +47,16 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-const server = app.listen(PORT, () => {
-  console.log(`====================================================`);
-  console.log(`🚀 InterviewAI Server running on port ${PORT}`);
-  console.log(`📡 Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`🧠 AI Engine: ${process.env.GEMINI_API_KEY ? 'Google Gemini' : 'Intelligent CS Engine'}`);
-  console.log(`====================================================`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`====================================================`);
+    console.log(`🚀 InterviewAI Server running on port ${PORT}`);
+    console.log(`📡 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`🧠 AI Engine: ${process.env.GEMINI_API_KEY ? 'Google Gemini' : 'Intelligent CS Engine'}`);
+    console.log(`====================================================`);
+  });
+}
+
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err) => {
